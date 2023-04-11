@@ -6,12 +6,32 @@
 //
 
 import UIKit
+import SnapKit
 
 class ViewController: UIViewController {
+    
+    private let button: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Next VC", for: .normal)
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .white
+        view.addSubview(button)
+        button.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+    }
+    
+    @objc func buttonPressed() {
+        let articleVC = ArticlesViewController()
+        
+        navigationController?.pushViewController(articleVC, animated: true)
+        
     }
 
 
